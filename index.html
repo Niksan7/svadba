@@ -639,10 +639,6 @@
                 padding: 60px 0;
             }
 
-            .divider2 {
-                display: none;
-            }
-
             .hero {
                 padding: 40px 16px 60px;
             }
@@ -658,8 +654,19 @@
 
             .hero-details {
                 font-size: 0.95rem;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
             }
 
+            .divider2 {
+                display: none;
+            }
+            .location-icon,.location-text {
+                flex-basis: 100%;
+                text-align: center;
+                margin-top: 4px;
+            }
             .hero-btn {
                 padding: 12px 32px;
                 font-size: 0.8rem;
@@ -769,7 +776,7 @@
                 <span class="divider1" style="margin:0 6px;color:#dcc4b8;">|</span>
                 <span class="label">⏰</span> <span>17:00</span>
                 <span class="divider2" style="margin:0 6px;color:#dcc4b8;">|</span>
-                <span class="label">📍</span> <span>г. Нальчик, ул. Идарова 123</span>
+                <span class="label location-icon">📍</span> <span class="location-text">г. Нальчик, ул. Идарова 123</span>
             </div>
             <a href="#rsvp" class="hero-btn fade-up">Подтвердить присутствие</a>
         </div>
