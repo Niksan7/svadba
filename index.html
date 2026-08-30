@@ -171,6 +171,7 @@
         }
 
         .hero-details span {
+            display: inline-block;
             margin: 0 6px;
         }
 
@@ -976,6 +977,20 @@
                     </div>
 
                     <div class="form-group">
+                        <label>С чьей стороны? <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label>
+                                <input type="radio" name="side" value="жених" required />
+                                Со стороны жениха
+                            </label>
+                            <label>
+                                <input type="radio" name="side" value="невеста" />
+                                Со стороны невесты
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <label for="message">Ваши пожелания или особые просьбы</label>
                         <textarea id="message" placeholder="Напишите нам что-нибудь тёплое..."></textarea>
                     </div>
@@ -1078,6 +1093,7 @@
                 const guests = document.getElementById('guests').value;
                 const message = document.getElementById('message').value.trim();
                 const secret = document.getElementById('secret').value.trim();
+                const sideRadio = form.querySelector('input[name="side"]:checked');
 
                 // Простая валидация на клиенте
                 if (!attendingRadio) {
@@ -1085,6 +1101,12 @@
                     messageEl.className = 'rsvp-message error';
                     return;
                 }
+                if (!sideRadio) {
+                    messageEl.textContent = '❌ Пожалуйста, укажите, с чьей стороны вы гость.';
+                    messageEl.className = 'rsvp-message error';
+                    return;
+                }
+                const side = sideRadio.value;
                 if (!secret) {
                     messageEl.textContent = '❌ Пожалуйста, введите кодовое слово.';
                     messageEl.className = 'rsvp-message error';
@@ -1104,6 +1126,7 @@
                 formData.append('guests', guests);
                 formData.append('message', message);
                 formData.append('secret', secret);
+                formData.append('side', side);
 
                 fetch('rsvp.php', {
                     method: 'POST',
